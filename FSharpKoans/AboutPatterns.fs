@@ -22,9 +22,9 @@ module ``09: Advanced pattern-matching`` =
             | "wut" | "lol" -> "yolo"
             | "sunrise"
             | "sunset" -> "transition"
-            | FILL__ME_IN
-            | FILL__ME_IN
-            | FILL__ME_IN -> "failure"
+            | "sundown"
+            | "moonrise"
+            | "Johnny Walker"|"Bell's"|"vodka"-> "failure"
             | _ -> "lolwut"
         f "lol" |> should equal "yolo"
         f "wut" |> should equal "yolo"
@@ -37,7 +37,8 @@ module ``09: Advanced pattern-matching`` =
         let f input =
             match input with
             | 0,0 -> "Both 0"
-            | ___ | ___ -> sprintf "One 0, one %d" __
+            |0,4->"One 0, one 4"
+            | 3,0|0,4-> sprintf "One 0, one %d" 3
             | _ -> "No 0"
         f (3,0) |> should equal "One 0, one 3"
         f (0, 4) |> should equal "One 0, one 4"
