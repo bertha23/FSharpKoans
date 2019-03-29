@@ -29,7 +29,9 @@ module ``14: List operations are so easy, you could make them yourself!`` =
     [<Test>]
     let ``01 Finding the length of a list, the hard way`` () =
         let length (xs : 'a list) : int =
-            __ // write a function to find the length of a list
+            match xs.Length<0 with
+            |false->xs.Length
+            |_->0  // write a function to find the length of a list
         length [9;8;7] |> should equal 3
         length [] |> should equal 0
         length ["Le Comte de Monte-Cristo"] |> should equal 1
@@ -38,12 +40,19 @@ module ``14: List operations are so easy, you could make them yourself!`` =
     // Hint: https://msdn.microsoft.com/en-us/library/ee340354.aspx
     [<Test>]
     let ``02 Finding the length of a list, the easy way`` () =
-        __ [9;8;5;8;45] |> should equal 5
+        let length (xs:'a list) : int=
+            match xs.Length<0 with 
+            |false -> xs.Length
+            |_ -> 0
+        length [9;8;5;8;45] |> should equal 5
 
     [<Test>]
     let ``03 Reversing a list, the hard way`` () =
         let rev (xs : 'a list) : 'a list =
-            __ // write a function to reverse a list here.
+            match xs.Length<0 with
+            |false-> List.rev xs
+            |_->[]
+             // write a function to reverse a list here.
         rev [9;8;7] |> should equal [7;8;9]
         rev [] |> should equal []
         rev [0] |> should equal [0]
@@ -52,15 +61,22 @@ module ``14: List operations are so easy, you could make them yourself!`` =
     // Hint: https://msdn.microsoft.com/en-us/library/ee340277.aspx
     [<Test>]
     let ``04 Reversing a list, the easy way`` () =
-        __ [9;8;7] |> should equal [7;8;9]
-        __ [] |> should equal []
-        __ [0] |> should equal [0]
-        __ [9;8;5;8;45] |> should equal [45;8;5;8;9]
+       let rev (xs : 'a list) : 'a list =
+           match xs.Length<=0 with
+           |false-> List.rev xs
+           |_->[]
+       rev [9;8;7] |> should equal [7;8;9]
+       rev [] |> should equal []
+       rev [0] |> should equal [0]
+       rev [9;8;5;8;45] |> should equal [45;8;5;8;9]
 
     [<Test>]
     let ``05 Fixed-function mapping, the hard way (part 1).`` () =
         let map (xs : int list) : int list =
-            __ // write a function which adds 1 to each element
+            match xs.Length<0 with
+            |false -> xs |> List.map(fun x-> x+1)
+            |_->[]
+            // write a function which adds 1 to each element
         map [1; 2; 3; 4] |> should equal [2; 3; 4; 5]
         map [9; 8; 7; 6] |> should equal [10; 9; 8; 7]
         map [15; 2; 7] |> should equal [16; 3; 8]
@@ -70,7 +86,10 @@ module ``14: List operations are so easy, you could make them yourself!`` =
     [<Test>]
     let ``06 Fixed-function mapping, the hard way (part 2).`` () =
         let map (xs : int list) : int list =
-            __ // write a function which doubles each element
+             match xs.Length<0 with
+            |false -> xs |> List.map(fun x-> x*2)
+            |_->[]
+             // write a function which doubles each element
         map [1; 2; 3; 4] |> should equal [2; 4; 6; 8]
         map [9; 8; 7; 6] |> should equal [18; 16; 14; 12]
         map [15; 2; 7] |> should equal [30; 4; 14]
