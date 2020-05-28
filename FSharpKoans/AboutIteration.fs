@@ -28,6 +28,6 @@ module ``05: To iterate is human; to recurse, divine`` =
                 match count = v with
                 | true -> 0
                 | false -> -1 + inner (count+1) (acc+1)
-            inner sq
+            inner sq 0
 
         myfun 12 |> should equal 2
